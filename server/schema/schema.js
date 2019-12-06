@@ -90,12 +90,31 @@ const Mutation = new GraphQLObjectType({
                 }
             },
             resolve(parent,args){
-                const { name,age } = args
+                const { name,args } = args
                 let author = new Author({
                     name,
                     age
                 })
                 return author.save()
+            }
+        },
+        addBook:{
+            type:BookType,
+            args:{
+                name:{
+                    type:GraphQLString
+                },
+                genre:{
+                    type:GraphQLString
+                }
+            },
+            resolve(parent,args){
+                const { name,genre } = args
+                let book = new Book({
+                    name,
+                    genre
+                })
+                return book.save()
             }
         }
     }
